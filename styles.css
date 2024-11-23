@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow-y: auto; /* Позволяет вертикальную прокрутку */
+  background-color: #172e46; /* Темно-синий цвет фона */
+  background-image: url('https://www.transparenttextures.com/patterns/white-paper.png'); /* Пример текстуры */
+  background-blend-mode: overlay; /* Смешивание фонового цвета и текстуры */
+  .character-button {
+      background-color: transparent; /* Прозрачный фон */
+      border: none; /* Убираем рамку */
+      color: white; /* Цвет текста */
+      cursor: pointer; /* Курсор при наведении */
+      transition: color 0.3s; /* Плавный переход цвета текста */
+  }
+
+  .character-button:hover {
+      color: rgba(255, 255, 255, 0.8); /* Цвет текста при наведении */
+  }
+}
+
+.character-selection {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет wrapping, чтобы изображения переходили на следующую строку */
+  justify-content: space-around; /* Выравнивание изображений по горизонтали */
+  width: 100%;
+  max-width: 1200px; /* Максимальная ширина контейнера */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.character-image {
+  width: 30%; /* Задаем ширину для изображений */
+  height: auto;
+  border-radius: 8px; /* Закругление углов изображения */
+  transition: transform 0.3s;
+  margin-bottom: 10px; /* Отступ между изображениями */
+}
+
+.character-image:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+}
+
+@media (max-width: 768px) {
+  .character-image {
+    width: 80%; /* На мобильных устройствах больше ширины */
+    margin-bottom: 10px;
+    max-width: 150px; /* Ограничение максимальной ширины для мобильных устройств */
+  }
+}

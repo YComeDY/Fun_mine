@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Для адаптивности на мобильных устройствах -->
+    <title>Игра</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Подключение шрифта -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Скрыть прокрутку */
+            font-family: 'Roboto', sans-serif; /* Устанавливаем шрифт для всего тела страницы */
+        }
+
+        body {
+            position: relative; /* Для абсолютного позиционирования изображения */
+        }
+
+        .game-image {
+            position: absolute; /* Абсолютное позиционирование для заполнения всего экрана */
+            top: 0;
+            left: 0;
+            width: 100%; /* Занять всю ширину экрана */
+            height: 100%; /* Занять всю высоту экрана */
+            object-fit: cover; /* Сохранить пропорции изображения */
+            z-index: -1; /* Позволить тексту отображаться поверх изображения */
+        }
+
+        /* Стили для вкладок */
+        .tab-container {
+            display: flex;
+            justify-content: center; /* Центрируем кнопки горизонтально */
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1); /* Полупрозрачный черный фон для рамки */
+            padding: 10px;
+            position: fixed; /* Фиксация вкладок внизу экрана */
+            bottom: 0;
+            z-index: 1; /* Обеспечиваем, чтобы вкладки были над изображением */
+            border-radius: 10px; /* Добавляем закругление углов контейнера */
+        }
+
+        .tab {
+            position: relative;
+            padding: 7px 12px; /* Увеличенные отступы для увеличения размера кнопки */
+            background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон кнопок */
+            color: white; /* Цвет текста */
+            border: none; /* Убираем рамку */
+            border-radius: 5px; /* Небольшое закругление углов */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            transition: background-color 0.3s; /* Плавная анимация фона */
+            font-size: 16px; /* Увеличен размер шрифта */
+            margin: 0 5px; /* Добавляем небольшой отступ между кнопками */
+        }
+
+        .tab:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Подсветка при наведении */
+        }
+
+        .tab:active {
+            transform: scale(0.95); /* Эффект нажатия - немного уменьшаем размер кнопки */
+        }
+    </style>
+</head>
+<body>
+    <img src="https://avatars.mds.yandex.net/get-shedevrum/14791598/img_325c7f6da4d311ef8219ae3507932d84/orig" alt="Игра" class="game-image"> 
+
+    <div class="tab-container">
+        <button class="tab" onclick="window.location.href='/characters'">Герои</button>
+        <button class="tab" onclick="alert('Арена');">Арена</button> 
+        <button class="tab" onclick="alert('Магазин');">Магазин</button>
+        <button class="tab" onclick="alert('Бонус');">Бонус</button>
+        
+    </div>
+</body>
+</html>

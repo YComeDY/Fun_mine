@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Daneehand Regular Cyr', sans-serif;
+        }
+        .fullscreen-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+        #loading {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            font-size: 24px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <img src="https://avatars.mds.yandex.net/get-shedevrum/15060653/img_a02a82cfa4d011ef976ec29b3b178e3b/orig" alt="CS MINE" class="fullscreen-image">
+    <div id="loading">Загрузка: 0%</div>
+
+    <script>
+        function simulateLoading() {
+            let loadingText = document.getElementById('loading');
+            let progress = 0;
+
+            let interval = setInterval(() => {
+                progress += 2; // Увеличиваем прогресс на 2%
+                loadingText.innerText = `Загрузка: ${progress}%`;
+
+                if (progress >= 100) { // Когда загрузка завершена
+                    clearInterval(interval);
+                    loadingText.style.display = 'none'; // Скрываем индикатор
+                    window.location.href = '/game'; // Переходим на новый экран
+                }
+            }, 50); // Уменьшили интервал до 50 мс
+        }
+
+        window.onload = simulateLoading; // Запуск при загрузке страницы
+    </script>
+</body>
+</html>

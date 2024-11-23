@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор персонажа</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .back-button {
+            position: fixed; 
+            bottom: 20px; 
+            left: 20px; 
+            padding: 5px 10px; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+            font-size: 14px; 
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.2); 
+        }
+
+        .character-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Увеличиваем отступ между элементами */
+            justify-content: center; 
+            margin-top: 50px; 
+        }
+
+        .character-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            width: calc(50% - 10px); /* Две иконки в ряд с отступами */
+            max-width: 200px; /* максимальная ширина для адаптивного дизайна */
+        }
+
+        .character-image {
+            width: 100%; /* Сделаем картинку на всю ширину контейнера */
+            max-width: 160px; /* Максимальная ширина картинки для уменьшения */
+            height: auto; 
+            cursor: pointer; /* Изменяем курсор на указатель */
+            transition: transform 0.2s; 
+        }
+
+        .character-image:hover {
+            transform: scale(1.1); 
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #172e46; /* Темно-синий цвет фона */
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 300px;
+            width: 80%;
+            color: white; /* Цвет текста белый для контраста */
+        }
+
+        .close-button {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .character-button {
+            background-color: transparent; /* Прозрачный фон */
+            border: none; /* Убираем рамку */
+            color: white; /* Цвет текста */
+            cursor: pointer; /* Курсор при наведении */
+            transition: color 0.3s; /* Плавный переход цвета текста */
+            margin-top: 5px; /* Отступ сверху для кнопки */
+        }
+
+        .character-button:hover {
+            color: rgba(255, 255, 255, 0.8); /* Цвет текста при наведении */
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">← Назад</button>
+
+    <div class="character-selection">
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/13544910/img_6da86aeda4e811efa12aca21692ca115/orig"  
+            alt="Elenshaer" 
+            class="character-image" onclick="openModal('Funshaer', 'https://avatars.mds.yandex.net/get-shedevrum/13544910/img_6da86aeda4e811efa12aca21692ca115/orig', 'Funshaer - Воин королевства Вандалис, славится своим мастерством обращения с топором, выкованным из звездного металла.', '💥Способности: ⚔️Молниеносный Удар: Funshaer наносит противнику повышеный урон вызывая кровотечение.')">
+    
+        <button class="character-button">Funshaer</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/15060653/img_a02a82cfa4d011ef976ec29b3b178e3b/orig" 
+            alt="Персонаж 2" 
+            class="character-image" onclick="openModal('Funbreaker', 'https://avatars.mds.yandex.net/get-shedevrum/15060653/img_a02a82cfa4d011ef976ec29b3b178e3b/orig', 'Funbreaker славится своей невероятной скоростью и мощными атаками, способными разрывать врагов на куски.', '💥Способности: ⚔️Вихрь клинка: Funbreaker вращается с высокой скоростью, наводя страх на своих противников.')">
+            <button class="character-button">Funbreaker</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/14441318/img_72e284d2a4e511efae169ec2f49e112b/orig" 
+            alt="Персонаж 3" 
+            class="character-image" onclick="openModal('Funveil', 'https://avatars.mds.yandex.net/get-shedevrum/14441318/img_72e284d2a4e511efae169ec2f49e112b/orig', 'Funveil – загадочный ассасин, умеющий сливаться с тенями. Его ловкость позволяют ему перемещаться бесшумно, оставляя врагов в неведении до последнего момента.', '💥Способности: ⚔️Мгновение тьмы: Funveil на мгновение растворяется в тенях, позволяя ему мгновенно атаковать противника.')">
+            <button class="character-button">Funveil</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/15043079/img_1f36a616a4f111ef8e4f6663e723eb90/orig"  
+            alt="Персонаж 4" 
+            class="character-image" onclick="openModal('Funkeeper', 'https://avatars.mds.yandex.net/get-shedevrum/15043079/img_1f36a616a4f111ef8e4f6663e723eb90/orig', 'Funkeeper – могучий воин, облеченный в прочную стальную броню, внушающую страх врагам и уверенность союзникам. ', '💥Способности: ⚔️Стальная стойка: уходит в защитную стойку, увеличивая свою броню на короткий промежуток времени и снижая входящий урон.')">
+            <button class="character-button">Funkeeper</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/13807320/img_47106e35a4f111ef8aa19225989a17aa/orig" 
+            alt="Персонаж 5" 
+            class="character-image" onclick="openModal('Funclash', 'https://avatars.mds.yandex.net/get-shedevrum/13807320/img_47106e35a4f111ef8aa19225989a17aa/orig', 'Funclash – выдающийся воин, облаченный в массивные доспехи. Его сила и мощь проявляются в каждой атаке, а ярость битвы делает его неукротимым на поле боя.', '💥Способности: ⚔️ Удар земли: Funclash со всей силой вбивает свое оружие в землю, вызывая сильную ударную волну, нанося повышенный урон всей команде противника.')">
+            <button class="character-button">Funclash</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/15161213/img_7918cf3fa4f111efbd9292ae30fd6d10/orig" 
+            alt="Персонаж 6" 
+            class="character-image" onclick="openModal('Funmancer', 'https://avatars.mds.yandex.net/get-shedevrum/15161213/img_7918cf3fa4f111efbd9292ae30fd6d10/orig', 'Funmancer — мощный маг, обладающий искусством ледяной магии. Его холодная магия наносит ущерб, и позволяет формировать ледяные барьеры на поле боя.', '💥Способности: ⚔️Ледяной шторм: Funmancer вызывает мощный ледяной шторм, который обрушивается на противников, нанося урон и замораживая врагов на короткий срок.')">
+            <button class="character-button">Funmancer</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/14791598/img_0d8b91e9a91611ef92caca21692ca115/orig" 
+            alt="Персонаж 7" 
+            class="character-image" onclick="openModal('Funrock', 'https://avatars.mds.yandex.net/get-shedevrum/14791598/img_0d8b91e9a91611ef92caca21692ca115/orig', 'Funrock — воин, чье имя по праву носит свирепую силу и стойкость. Обладая уникальными огненными цепями, он становится грозой на поле боя.', '💥Способности: ⚔️ Пламя ужаса: Funrock обрушает свои огненные цепи на ближайших врагов, вызывая мощный удар, который наносит урон и поджигает их на несколько секунд.')">
+            <button class="character-button">Funrock</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/14791598/img_6587e78aa91b11ef8fdeb66da8edef57/orig" 
+            alt="Персонаж 8" 
+            class="character-image" onclick="openModal('Funilocry', 'https://avatars.mds.yandex.net/get-shedevrum/14791598/img_6587e78aa91b11ef8fdeb66da8edef57/orig', 'Funilocry — смелый воин, обладающий выдающейся силой духа и непреклонным характером.', '💥Способности: ⚔️ Дух природы: Funilocry может временно сосредоточить свою внутреннюю силу, увеличивая скорость и мощь своих атак.')">
+            <button class="character-button">Funilocry</button>
+        </div>
+
+        <div class="character-container">
+            <img src="https://avatars.mds.yandex.net/get-shedevrum/13281783/img_f278c208a91b11efa28c665999f45760/orig" 
+            alt="Персонаж 8" 
+            class="character-image" onclick="openModal('Funiverse', 'https://avatars.mds.yandex.net/get-shedevrum/13281783/img_f278c208a91b11efa28c665999f45760/orig', 'Funiverse — ловкий и изящный воин, мастерски владеющий двумя клинками для атаки.', '💥Способности: ⚔️ Двойной Удар: Funiverse выполняет серию стремительных атак двумя клинками, нанося урон всей команде противника')">
+            <button class="character-button">Funiverse</button>
+        </div>
+    </div>
+
+    <div class="modal" id="characterModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <img id="modalImage" src="" alt="" style="max-width: 100%; height: auto;">
+            <p id="modalDescription"></p>
+            <p id="modalAbilities"></p>
+            <button class="close-button" onclick="closeModal(event)">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back(); 
+        }
+
+        function openModal(title, imageSrc, description, abilities) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('modalDescription').innerText = description;
+            document.getElementById('modalAbilities').innerText = abilities;
+            document.getElementById('characterModal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            if (event.target === event.currentTarget || event.target.classList.contains('close-button')) {
+                document.getElementById('characterModal').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
