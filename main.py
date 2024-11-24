@@ -2,8 +2,8 @@ from telegram import Game, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInf
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 import logging
 
-TOKEN = '7514272138:AAG3r5s1lVPRlDv2WgPLBuKPJOl5iLx1_mk'  # Замените на ваш токен
-WEBSITE_URL = 'https://github.com/YComeDY/curly-enigma.git'  # Ваш URL веб-приложения
+TOKEN = '7614563217:AAFRcv1sXtobku4b1ITlZQ_mNbNpY861Udk'  # Замените на ваш токен
+WEBSITE_URL = 'https://funbots.vercel.app/'  # Ваш URL веб-приложения
 
 # Настройка логирования
 logging.basicConfig(
